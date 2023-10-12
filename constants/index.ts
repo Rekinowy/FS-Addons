@@ -1,4 +1,4 @@
-export const filters = ['all', 'aircrafts', 'airports', 'misc', 'utilites'];
+export const filters = ['all', 'aircrafts', 'airports', 'misc', 'utilities'];
 
 export const addons = [
   {

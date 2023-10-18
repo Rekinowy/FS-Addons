@@ -14,6 +14,7 @@ const Page = async ({ searchParams }: Props) => {
     query: searchParams?.query || "",
     category: searchParams?.category || "",
     page: "1",
+    order: "date desc",
   });
 
   return (

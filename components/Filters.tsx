@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-import { filters } from "@/constants";
+export const filters = ["all", "aircrafts", "airports", "misc", "utilities"];
 
 const Filters = () => {
   const searchParams = useSearchParams();

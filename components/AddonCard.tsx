@@ -1,7 +1,9 @@
+import { format } from "date-fns";
+
 import Image from "next/image";
 import Link from "next/link";
 
-type Addons = {
+type Addon = {
   title: string;
   icao?: string;
   image: string;
@@ -9,6 +11,7 @@ type Addons = {
   version: string;
   country?: string;
   date: string;
+  downloadLink: string;
 };
 
 const AddonCard = ({
@@ -19,7 +22,10 @@ const AddonCard = ({
   version,
   country,
   date,
-}: Addons) => {
+  downloadLink,
+}: Addon) => {
+  const formattedDate = format(new Date(date), "MMMM d, yyyy");
+
   return (
     <div className="flex flex-col justify-between w-full rounded-lg ring-2 ring-black-300 cursor-pointer hover:ring-black-400">
       <div className="relative text-white text-sm font-semibold">
@@ -55,8 +61,8 @@ const AddonCard = ({
       </div>
 
       <div className="flex-between py-2 px-3 text-sm lg:text-base">
-        <p className=" text-slate-400">{date}</p>
-        <Link href="/" className="flex p-2">
+        <p className=" text-slate-400 font-light">{formattedDate}</p>
+        <Link href={downloadLink} className="flex p-2">
           <p className="mr-1.5 text-gradient_blue text font">Download</p>
           <Image
             src="/arrow-blue.svg"

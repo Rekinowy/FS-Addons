@@ -10,6 +10,7 @@ type Addon = {
   developer: string;
   version: string;
   country?: string;
+  flag: string;
   date: string;
   downloadLink: string;
 };
@@ -21,12 +22,11 @@ const AddonCard = ({
   developer,
   version,
   country,
+  flag,
   date,
   downloadLink,
 }: Addon) => {
   const formattedDate = format(new Date(date), "MMMM d, yyyy");
-
-  let flag = `/flags/${country}.png`;
 
   return (
     <div className="flex flex-col justify-between w-full rounded-lg ring-2 ring-black-300 cursor-pointer hover:ring-black-400 transition-all">

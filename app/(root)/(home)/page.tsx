@@ -45,7 +45,6 @@ const Page = async ({ searchParams }: Props) => {
                 developer={addon.developer}
                 version={addon.version}
                 country={addon.country}
-                flag={`/flags/${addon.country}.png`}
                 date={addon.date}
                 downloadLink={addon.downloadLink}
               />

@@ -1,18 +1,9 @@
-"use client";
+import dynamic from "next/dynamic";
 
-import { MapContainer, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+const DynamicMap = dynamic(() => import("@/components/Map"), { ssr: false });
 
-const page = () => {
-  return (
-    <div className="flex w-full h-full pt-[68px] sm:pt-24">
-      <MapContainer className="w-full flex-grow" center={[30, 0]} zoom={2}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-      </MapContainer>
-    </div>
-  );
+const Page = () => {
+  return <DynamicMap />;
 };
-export default page;
+
+export default Page;

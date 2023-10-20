@@ -30,7 +30,7 @@ const PaginationControls = ({ page, pagesCount }: PaginationControlsProps) => {
   };
 
   return (
-    <div className="flex-center pt-10 gap-6 text-white">
+    <div className="flex-center py-6 sm:py-8 gap-6 text-white">
       <button
         className={`px-4 py-2 ring-1 ${
           page === "1" && "ring-gray-700 text-gray-600"

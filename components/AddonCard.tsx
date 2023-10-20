@@ -27,13 +27,13 @@ const AddonCard = ({
   const formattedDate = format(new Date(date), "MMMM d, yyyy");
 
   return (
-    <div className="flex flex-col justify-between w-full rounded-lg ring-2 ring-black-300 cursor-pointer hover:ring-black-400">
+    <div className="flex flex-col justify-between w-full rounded-lg ring-2 ring-black-300 cursor-pointer hover:ring-black-400 transition-all">
       <div className="relative text-white text-sm font-semibold">
         <div className="absolute rounded-md px-2 py-1 top-2 right-2 gradient_blue">
           <h4 className="font-semibold">v{version}</h4>
         </div>
         {country && (
-          <div className="absolute flex gap-1 rounded-md px-2 py-1 top-2 left-2 gradient_blue">
+          <div className="absolute flex gap-1 rounded-md px-1.5 py-1 top-2 left-2 gradient_blue">
             <Image
               src={`/flags/${country}.png`}
               alt="PL"
@@ -51,7 +51,7 @@ const AddonCard = ({
           className="w-full rounded-t-lg object-contain"
         />
         <div>
-          <div className="flex flex-col py-2 px-3 gap-2">
+          <div className="flex flex-col py-3 px-3 gap-2">
             <h2 className="font-medium text-xl font text-white">
               <span className="font-bold">{icao}</span> {title}
             </h2>
@@ -63,13 +63,12 @@ const AddonCard = ({
       <div className="flex-between py-2 px-3 text-sm lg:text-base">
         <p className=" text-slate-400 font-light">{formattedDate}</p>
         <Link href={downloadLink} className="flex p-2">
-          <p className="mr-1.5 text-gradient_blue text font">Download</p>
+          <p className="mr-1.5 text-gradient_blue">Download</p>
           <Image
             src="/arrow-blue.svg"
             alt="Download"
-            width={14}
-            height={14}
-            className="rotate-90"
+            width={14.5}
+            height={11}
           />
         </Link>
       </div>

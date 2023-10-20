@@ -1,5 +1,7 @@
 import AddonCard from "@/components/AddonCard";
 import Filters from "@/components/Filters";
+import Header from "@/components/Header";
+import PaginationControls from "@/components/PaginationControls";
 import SearchForm from "@/components/SearchForm";
 import { getResources } from "@/sanity/actions";
 
@@ -10,12 +12,19 @@ interface Props {
 }
 
 const Page = async ({ searchParams }: Props) => {
+  const query = searchParams?.query || "";
+  const category = searchParams?.category || "";
+  const page = searchParams?.page || "1";
+  const perPage = "6";
+
   const addons = await getResources({
-    query: searchParams?.query || "",
-    category: searchParams?.category || "",
-    page: "1",
-    order: "date desc",
+    query: query,
+    category: category,
+    page: page,
+    perPage: perPage,
   });
+
+  const pagesCount = Math.ceil(addons?.count / Number(perPage));
 
   return (
     <main className="flex-center mx-auto w-full max-w-screen-2xl flex-col pt-20 sm:px-8 px-6">
@@ -23,25 +32,35 @@ const Page = async ({ searchParams }: Props) => {
         <SearchForm />
         <Filters />
       </section>
-      <section className="max-sm:py-2">
-        <h1 className="heading3 self-start pb-4 sm:pt-4 text-white-800">
-          Recently released
-        </h1>
-        <div className="lg:gap-8 gap-4  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
-          {addons.map((addon: any) => (
-            <AddonCard
-              key={addon._id}
-              title={addon.title}
-              icao={addon.icao}
-              image={addon.image}
-              developer={addon.developer}
-              version={addon.version}
-              country={addon.country}
-              date={addon.date}
-              downloadLink={addon.downloadLink}
-            />
-          ))}
+      <section className="py-2 h-auto w-full">
+        <Header query={query} category={category} />
+        <div className="lg:gap-8 gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
+          {addons?.resources.length > 0 ? (
+            addons?.resources.map((addon: any) => (
+              <AddonCard
+                key={addon._id}
+                title={addon.title}
+                icao={addon.icao}
+                image={addon.image}
+                developer={addon.developer}
+                version={addon.version}
+                country={addon.country}
+                date={addon.date}
+                downloadLink={addon.downloadLink}
+              />
+            ))
+          ) : (
+            <p className="text-lg w-full m-4 text-white-400">No addons found</p>
+          )}
         </div>
+        {pagesCount > 1 && (
+          <PaginationControls
+            count={addons?.count}
+            page={page}
+            perPage={perPage}
+            pagesCount={pagesCount}
+          />
+        )}
       </section>
     </main>
   );

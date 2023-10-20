@@ -5,17 +5,18 @@ interface BuildQueryParams {
   query: string;
   category: string;
   page: number;
-  perPage?: number;
-  order: string;
+  perPage: number;
 }
 
 export function buildQuery(params: BuildQueryParams) {
-  const { type, query, category, page = 1, perPage = 10, order } = params;
+  const { type, query, category, page, perPage } = params;
 
-  const conditions = [`*[_type=="${type}"`];
+  const conditions = [`*[_type == "${type}"`];
+  let order = "date desc"
 
   if (query) {
-    conditions.push(`title match "*${query}*"`);
+    conditions.push(`[icao, title, developer] match "*${query}*"`)
+    order = "lower(title) asc";
   }
 
   if (category && category !== 'all') {
@@ -24,7 +25,7 @@ export function buildQuery(params: BuildQueryParams) {
 
   // calculate pagination limits
   const offset = (page - 1) * perPage;
-  const limit = perPage;
+  const limit = offset + perPage;
 
   const queryConditions = conditions.length > 1
     ? `${conditions[0]} && (${conditions
@@ -32,8 +33,40 @@ export function buildQuery(params: BuildQueryParams) {
         .join(' && ')})]`
     : `${conditions[0]}]`;
 
-  // add sorting to the query
-  const sortedQuery = `${queryConditions} | order(${order}) [${offset}...${limit}]`;
+    // add sorting to the query
+    const sortedQuery = `${queryConditions} | order(${order}) [${offset}...${limit}]`;
+  
+    return {queryConditions: queryConditions, sortedQuery: sortedQuery};
+}
 
-  return sortedQuery;
+
+interface UrlQueryParams {
+  params: string;
+  key?: string;
+  value?: string | null;
+  keysToRemove?: string[];
+}
+
+export function formUrlQuery({
+  params,
+  key,
+  value,
+  keysToRemove,
+}: UrlQueryParams) {
+  const currentUrl = qs.parse(params);
+
+  if (keysToRemove) {
+    keysToRemove.forEach((keyToRemove) => {
+      delete currentUrl[keyToRemove];
+    });
+  }
+  
+  if (key && value) {
+    currentUrl[key] = value;
+  }
+
+  return qs.stringifyUrl(
+    { url: window.location.pathname, query: currentUrl },
+    { skipNull: true }
+  );
 }

@@ -7,11 +7,14 @@ config.autoAddCss = false;
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
-      <Navbar />
-      {children}
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        {" "}
+        <Navbar />
+        {children}
+      </div>
       <Footer />
-    </>
+    </div>
   );
 };
 export default layout;

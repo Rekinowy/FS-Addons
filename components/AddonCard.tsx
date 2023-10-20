@@ -52,8 +52,8 @@ const AddonCard = ({
         />
         <div>
           <div className="flex flex-col py-2 px-3 gap-2">
-            <h2 className="font-base text-xl text-white">
-              <span>{icao}</span> {title}
+            <h2 className="font-medium text-xl font text-white">
+              <span className="font-bold">{icao}</span> {title}
             </h2>
             <h3 className="text-base font-light text-slate-200">{developer}</h3>
           </div>
@@ -69,7 +69,7 @@ const AddonCard = ({
             alt="Download"
             width={14}
             height={14}
-            className=" rotate-90"
+            className="rotate-90"
           />
         </Link>
       </div>

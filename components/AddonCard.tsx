@@ -26,6 +26,8 @@ const AddonCard = ({
 }: Addon) => {
   const formattedDate = format(new Date(date), "MMMM d, yyyy");
 
+  let flag = `/flags/${country}.png`;
+
   return (
     <div className="flex flex-col justify-between w-full rounded-lg ring-2 ring-black-300 cursor-pointer hover:ring-black-400 transition-all">
       <div className="relative text-white text-sm font-semibold">
@@ -34,12 +36,7 @@ const AddonCard = ({
         </div>
         {country && (
           <div className="absolute flex gap-1 rounded-md px-1.5 py-1 top-2 left-2 gradient_blue">
-            <Image
-              src={`/flags/pl.png`}
-              alt={`${country}`}
-              width={20}
-              height={20}
-            />
+            <Image src={flag} alt={`${country}`} width={20} height={20} />
             <h4 className="uppercase">{country}</h4>
           </div>
         )}

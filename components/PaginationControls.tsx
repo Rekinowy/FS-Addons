@@ -26,7 +26,7 @@ const PaginationControls = ({ page, pagesCount }: PaginationControlsProps) => {
     });
 
     router.push(newUrl, { scroll: false });
-    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
   };
 
   return (

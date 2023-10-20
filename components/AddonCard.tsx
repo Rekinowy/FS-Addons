@@ -35,8 +35,8 @@ const AddonCard = ({
         {country && (
           <div className="absolute flex gap-1 rounded-md px-1.5 py-1 top-2 left-2 gradient_blue">
             <Image
-              src={`/flags/${country}.png`}
-              alt="PL"
+              src={`/flags/pl.png`}
+              alt={`${country}`}
               width={20}
               height={20}
             />

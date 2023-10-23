@@ -1,6 +1,6 @@
 const schema = {
   name: 'addon',
-  Title: 'Addon',
+  Title: 'Addons',
   type:'document',
   fields: [
     {
@@ -13,7 +13,7 @@ const schema = {
       title: 'Slug', 
       type: 'slug', 
       options: 
-        { source: 'title' } },
+        { source: (doc: any) => `${doc.developer} ${doc.title}` } },
     {
       name: 'icao',
       title: 'ICAO',

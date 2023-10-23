@@ -6,7 +6,7 @@ import Link from "next/link";
 const Navbar = () => {
   return (
     <nav className="flex-center fixed z-10 w-full sm:h-24 py-4 sm:py-6 bg-black-100 border-b-2 border-black-300 text-gray-100">
-      <div className="flex-between w-full max-w-screen-2xl px-6 sm:px-8">
+      <div className="flex-between w-full max-w-screen-2xl px-4 sm:px-8">
         <Link href="/" className=" w-[120px] sm:w-[150px]">
           <Image src="/logo.png" alt="Logo" width={150} height={43} />
         </Link>

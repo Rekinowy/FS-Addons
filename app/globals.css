@@ -107,6 +107,10 @@
     @apply flex justify-between items-center;
   }
 
+  .flex-evenly {
+    @apply flex justify-evenly items-center;
+  }
+
   .flex-center {
     @apply flex justify-center items-center;
   }

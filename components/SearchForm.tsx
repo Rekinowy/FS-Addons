@@ -47,7 +47,7 @@ const SearchForm = () => {
           alt="Search icon"
         />
         <Input
-          className="sm:base-regular h-12 sm:h-16 border-0 rounded-lg bg-black-400 pl-14 sm:pl-20 pr-8 text-lg text-white-800 !ring-0 !ring-offset-0 placeholder:text-white-600"
+          className="base-regular h-12 sm:h-16 border-0 rounded-lg bg-black-400 pl-14 sm:pl-20 pr-8 text-white-800 !ring-0 !ring-offset-0 placeholder:text-white-600 placeholder:text-xl max-sm:placeholder:text-base max-sm:text-lg"
           type="text"
           placeholder="Search"
           value={search}

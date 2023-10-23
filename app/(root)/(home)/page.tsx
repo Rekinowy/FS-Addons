@@ -27,7 +27,7 @@ const Page = async ({ searchParams }: Props) => {
   const pagesCount = Math.ceil(addons?.count / Number(perPage));
 
   return (
-    <main className="flex-center mx-auto w-full max-w-screen-2xl flex-col pt-20 sm:pt-32 px-6 sm:px-8">
+    <main className="flex-center mx-auto w-full max-w-screen-2xl flex-col pt-20 sm:pt-32 px-4 sm:px-8">
       <section className="flex-center flex-col w-full">
         <SearchForm />
         <Filters />

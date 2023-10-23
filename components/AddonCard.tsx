@@ -34,12 +34,12 @@ const AddonCard = ({
         </div>
         {country && (
           <div className="absolute flex gap-1 rounded-md px-1.5 py-1 top-2 left-2 gradient_blue">
-            <img
+            <Image
               src={`/flags/${country.toLowerCase()}.png`}
               alt={`${country}`}
               width={20}
               height={20}
-            ></img>
+            />
             <h4 className="uppercase">{country}</h4>
           </div>
         )}
@@ -63,7 +63,9 @@ const AddonCard = ({
       <div className="flex-between py-2 px-3 text-sm lg:text-base">
         <p className=" text-slate-400 font-light">{formattedDate}</p>
         <Link href={downloadLink} className="flex p-2">
-          <p className="mr-1.5 text-gradient_blue">Download</p>
+          <p className="mr-2 hover:font-semibold transition-all text-gradient_blue">
+            Buy now
+          </p>
           <Image
             src="/arrow-blue.svg"
             alt="Download"

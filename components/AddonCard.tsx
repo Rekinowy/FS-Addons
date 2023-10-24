@@ -63,7 +63,7 @@ const AddonCard = ({
       <div className="flex-between py-2 px-3 text-sm lg:text-base">
         <p className=" text-slate-400 font-light">{formattedDate}</p>
         <Link href={downloadLink} className="flex p-2">
-          <p className="mr-2 hover:font-semibold transition-all text-gradient_blue">
+          <p className="mr-2 hover:font-semibold transition-all duration-75 text-gradient_blue">
             Buy now
           </p>
           <Image

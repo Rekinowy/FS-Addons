@@ -79,7 +79,7 @@ const Navbar = () => {
 
       <div
         onClick={() => setIsMenuOpen(false)}
-        className={`fixed bg-black ${
+        className={`fixed sm:hidden bg-black ${
           isMenuOpen ? "bg-opacity-70 w-screen h-screen" : "bg-opacity-0"
         } z-10 pointer-events-auto transition-all duration-300`}
       />

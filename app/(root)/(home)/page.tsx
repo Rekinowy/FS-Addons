@@ -14,12 +14,14 @@ interface Props {
 const Page = async ({ searchParams }: Props) => {
   const query = searchParams?.query || "";
   const category = searchParams?.category || "";
+  const country = searchParams?.country || "";
   const page = searchParams?.page || "1";
-  const perPage = "6";
+  const perPage = "12";
 
   const addons = await getResources({
     query: query,
     category: category,
+    country: country,
     page: page,
     perPage: perPage,
   });
@@ -33,8 +35,8 @@ const Page = async ({ searchParams }: Props) => {
         <Filters />
       </section>
       <section className="max-sm:pt-2 w-full">
-        <Header query={query} category={category} />
-        <div className="lg:gap-8 gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center mt-2">
+        <Header query={query} category={category} country={country} />
+        <div className="grid gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center mt-2">
           {addons?.resources.length > 0 ? (
             addons?.resources.map((addon: any) => (
               <AddonCard

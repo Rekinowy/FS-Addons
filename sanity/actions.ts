@@ -2,15 +2,16 @@ import { groq } from 'next-sanity';
 import { readClient } from './lib/client'
 import { buildQuery } from './utils';
 
-interface GetResourcesParams { query: string, category: string, page: string, perPage: string}
+interface GetResourcesParams { query: string, category: string, country:string, page: string, perPage: string}
 
 export const getResources = async (params: GetResourcesParams) => {
-  const { query, category, page, perPage} = params;
+  const { query, category, country, page, perPage} = params;
 
   const newQuery = buildQuery({
     type: 'addon',
     query,
     category,
+    country,
     page: parseInt(page),
     perPage: parseInt(perPage),
   })

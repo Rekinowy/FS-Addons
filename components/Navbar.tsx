@@ -18,8 +18,8 @@ const Navbar = () => {
           </Link>
 
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex-center rounded-md checked:bg-transparent sm:hidden"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className="flex-center rounded-md sm:hidden"
           >
             {isMenuOpen ? (
               <MdClose className="w-8 h-8" />

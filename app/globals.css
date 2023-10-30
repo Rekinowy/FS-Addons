@@ -230,6 +230,9 @@
 .gradient_blue {
   background: linear-gradient(90deg, #4c73ff 0%, #389bff 100%);
 }
+.gradient_transparent {
+  background: transparent;
+}
 
 .text-gradient_blue-purple {
   background: linear-gradient(90deg, #4ca5ff 30%, #b573f8 100%);

@@ -38,7 +38,9 @@ const Filters = () => {
         <button
           key={filter}
           onClick={() => handleFilter(filter)}
-          className={`${filter == category && "gradient_blue"} ${
+          className={`${
+            filter == category && "gradient_blue"
+          } ${
             filter !== category && "hover:bg-slate-800"
           } whitespace-nowrap rounded-lg px-3 sm:px-6 py-2 sm:py-2.5 capitalize text-sm sm:text-base transition-all`}
         >

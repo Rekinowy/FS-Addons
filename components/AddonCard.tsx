@@ -7,6 +7,7 @@ import { format } from "date-fns";
 
 import Image from "next/image";
 import Link from "next/link";
+import { MdShoppingCartCheckout } from "react-icons/md";
 
 type Addon = {
   title: string;
@@ -95,16 +96,11 @@ const AddonCard = ({
 
       <div className="flex-between py-2 px-3 text-sm lg:text-base">
         <p className=" text-slate-400 font-light">{formattedDate}</p>
-        <Link href={downloadLink} className="flex p-2">
-          <p className="mr-2 hover:font-semibold transition-all duration-75 text-gradient_blue">
+        <Link href={downloadLink} className="flex-center p-2 group">
+          <p className="mr-2 group-hover:font-semibold transition-all duration-75 text-gradient_blue">
             Buy now
           </p>
-          <Image
-            src="/arrow-blue.svg"
-            alt="Download"
-            width={14.5}
-            height={11}
-          />
+          <MdShoppingCartCheckout className="w-[18px] h-[18px] text-[#4c73ff] group-hover:text-[#389bff] transition-all duration-75" />
         </Link>
       </div>
     </div>

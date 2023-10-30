@@ -5,6 +5,7 @@ import { MdClose, MdMenu } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { links } from "@/constants/links";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,13 +29,12 @@ const Navbar = () => {
             )}
           </button>
 
-          <ul className="flex items-center gap-x-6 text-lg max-sm:hidden">
-            <li>
-              <Link href="/">Updates</Link>
-            </li>
-            <li>
-              <Link href="/">FAQ</Link>
-            </li>
+          <ul className="flex items-center gap-x-8 text-lg max-sm:hidden">
+            {links.map((link) => (
+              <li>
+                <Link href={link.url}>{link.label}</Link>
+              </li>
+            ))}
             <li className="ml-8">
               <Link
                 href="/map"
@@ -48,25 +48,28 @@ const Navbar = () => {
         </div>
         <div
           className={`sm:hidden w-full absolute -z-10 bg-black-200 border-b-2 border-black-300 ${
-            isMenuOpen ? "top-16 display:block" : "-top-60 display:none"
+            isMenuOpen ? "top-16" : "-top-72"
           } transition-all duration-300`}
         >
           <ul className="flex-center flex-col text-lg">
-            <li className="w-3/4 h-20">
-              <Link href="/" className="w-full h-full flex-center">
-                Updates
-              </Link>
-            </li>
-            <div className="w-3/4 border-t border-black-300"></div>
-            <li className="w-3/4 h-20">
-              <Link href="/" className="w-full h-full flex-center">
-                FAQ
-              </Link>
-            </li>
-            <div className="w-3/4 border-t border-black-300"></div>
+            {links.map((link) => (
+              <>
+                <li className="w-3/4 h-20">
+                  <Link
+                    href={link.url}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="w-full h-full flex-center"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+                <div className="w-3/4 border-t border-black-300"></div>
+              </>
+            ))}
             <li className="w-3/4 h-20">
               <Link
                 href="/map"
+                onClick={() => setIsMenuOpen(false)}
                 className="flex-center w-full h-full gap-2 text-gradient_blue font-semibold"
               >
                 <FaMapLocationDot className="text-[#4c73ff] w-5 h-5" />

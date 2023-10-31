@@ -9,15 +9,11 @@ const schema = {
       type: 'string',
       validation: (Rule: any) => Rule.required(),
     },
-    { name: 'slug', 
-      title: 'Slug', 
-      type: 'slug', 
-      options: 
-        { source: (doc: any) => `${doc.developer} ${doc.title}` } },
     {
       name: 'icao',
       title: 'ICAO',
       type: 'string',
+      hidden: ({parent}: any) => parent?.category !== 'airports'
     },
     {
       name: 'developer',
@@ -25,16 +21,17 @@ const schema = {
       type: 'string',
       validation: (Rule: any) => Rule.required(),
     },
+    { name: 'slug', 
+      title: 'Slug', 
+      type: 'slug', 
+      options: 
+        { source: (doc: any) => `${doc.developer} ${doc.title}` }
+    },
     {
       name: 'version',
       title: 'Version',
       type: 'string',
       validation: (Rule: any) => Rule.required(),
-    },
-    {
-      name: 'country',
-      title: 'Country',
-      type: 'string',
     },
     {
       name: 'date',
@@ -54,6 +51,18 @@ const schema = {
       options: {
         list: ['aircrafts', 'airports', 'misc', 'utilities'],
       },
+    },
+    {
+      name: 'country',
+      title: 'Country',
+      type: 'string',
+      hidden: ({parent}: any) => parent?.category !== 'airports' && parent?.category !== 'misc'
+    },
+    {
+      name: 'coordinates',
+      title: 'Coordinates',
+      type: 'geopoint',
+      hidden: ({parent}: any) => parent?.category !== 'airports'
     },
     {
       name: 'downloadLink',

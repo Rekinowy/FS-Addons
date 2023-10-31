@@ -4,11 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 * {
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
+
+
 
 
 @layer utilities {
@@ -252,3 +256,9 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.leaflet-popup-content-wrapper {
+  padding-top: 12px !important;
+  padding-bottom: 8px !important;
+  background-color: rgba(255, 255, 255, 0.856) !important;
+  }

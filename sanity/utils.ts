@@ -40,7 +40,7 @@ export function buildQuery(params: BuildQueryParams) {
 
     // add sorting to the query
     const sortedQuery = `${queryConditions} | order(${order}) [${offset}...${limit}]`;
-    return {queryConditions: queryConditions, sortedQuery: sortedQuery};
+    return {queryConditions, sortedQuery};
 }
 
 

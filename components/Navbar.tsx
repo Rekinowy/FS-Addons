@@ -4,7 +4,7 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import { MdClose, MdMenu } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import { links } from "@/constants/links";
 
 const Navbar = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
 
           <ul className="flex items-center gap-x-8 text-lg max-sm:hidden">
             {links.map((link) => (
-              <li>
+              <li key={link.label}>
                 <Link href={link.url}>{link.label}</Link>
               </li>
             ))}
@@ -53,18 +53,16 @@ const Navbar = () => {
         >
           <ul className="flex-center flex-col text-lg">
             {links.map((link) => (
-              <>
-                <li className="w-3/4 h-20">
-                  <Link
-                    href={link.url}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="w-full h-full flex-center"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+              <li key={link.label} className="w-3/4 h-20">
+                <Link
+                  href={link.url}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full h-full flex-center"
+                >
+                  {link.label}
+                </Link>
                 <div className="w-3/4 border-t border-black-300"></div>
-              </>
+              </li>
             ))}
             <li className="w-3/4 h-20">
               <Link

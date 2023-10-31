@@ -17,7 +17,7 @@ const Map = ({ data }: any) => {
       id="map"
       className="flex w-full h-full mt-[68px] sm:mt-[108px] pb-12 sm:pb-20"
     >
-      <MapContainer className="w-full z-0 flex-grow" center={[30, 0]} zoom={3}>
+      <MapContainer className="w-full z-0 flex-grow" center={[40, 0]} zoom={3}>
         <TileLayer
           className="map-tiles"
           attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> | <a href="https://www.openstreetmap.org/copyright"> &copy; OpenStreetMap</a>'

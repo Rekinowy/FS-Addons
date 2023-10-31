@@ -262,3 +262,8 @@
   padding-bottom: 8px !important;
   background-color: rgba(255, 255, 255, 0.856) !important;
   }
+
+  .leaflet-container {
+    background: rgb(22 27 34) !important;
+    outline: 0;
+}

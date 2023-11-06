@@ -5,7 +5,7 @@ import { MdClose, MdMenu } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { links } from "@/constants/links";
+import { links } from "@/constants";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -7,6 +7,8 @@ interface Props {
 }
 
 const Header = ({ query, category, country }: Props) => {
+  if (category === "misc") category = "miscellaneous";
+
   if (query && category && country) {
     return (
       <h1 className="heading3 w-full py-4 self-start text-white-800">
@@ -32,13 +34,7 @@ const Header = ({ query, category, country }: Props) => {
       </h1>
     );
   }
-  if (category == "all" && country) {
-    return (
-      <h1 className="heading3 w-full py-4 self-start text-white-800">
-        From {countryName[country]}
-      </h1>
-    );
-  }
+
   if (category && country) {
     return (
       <h1 className="heading3 w-full py-4 self-start text-white-800">
@@ -51,13 +47,6 @@ const Header = ({ query, category, country }: Props) => {
     return (
       <h1 className="heading3 w-full py-4 self-start text-white-800">
         Search results for "{query}"
-      </h1>
-    );
-  }
-  if (category === "all") {
-    return (
-      <h1 className="heading3 w-full py-4 self-start text-white-800">
-        Recently released
       </h1>
     );
   }

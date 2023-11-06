@@ -33,7 +33,7 @@ export const getResources = async (params: GetResourcesParams) => {
 export const getMapData = async () => {
   try {
     const mapData = await readClient.fetch(
-      groq`*[_type == 'addon' && defined(coordinates)]{ coordinates, title, _id, icao, developer, version, downloadLink, "image": image.asset->url}`)
+      groq`*[_type == 'addon' && defined(coordinates)]{ coordinates, title, _id, icao, developer, category, version, downloadLink, "image": image.asset->url}`)
     return mapData;
 
   } catch (err) {

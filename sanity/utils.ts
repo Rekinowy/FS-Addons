@@ -20,7 +20,7 @@ export function buildQuery(params: BuildQueryParams) {
     order = "lower(title) asc";
   }
 
-  if (category && category !== 'all') {
+  if (category) {
     conditions.push(`category == "${category}"`);
   }
 

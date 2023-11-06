@@ -7,8 +7,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Map = ({ data }: any) => {
-  const marker = icon({
+  const airportMarker = icon({
     iconUrl: "/airport-location.svg",
+    iconSize: [20, 20],
+  });
+
+  const sceneryMarker = icon({
+    iconUrl: "/scenery-location.svg",
     iconSize: [20, 20],
   });
 
@@ -26,11 +31,11 @@ const Map = ({ data }: any) => {
         {data.map((item: any) => (
           <Marker
             key={item._id}
-            icon={marker}
+            icon={item.category == "airports" ? airportMarker : sceneryMarker}
             position={[item.coordinates.lat, item.coordinates.lng]}
           >
             <Popup>
-              <div className="flex flex-col w-[280px]">
+              <div className="flex flex-col w-[260px]">
                 <Image
                   src={item.image}
                   alt="cover"
@@ -39,7 +44,14 @@ const Map = ({ data }: any) => {
                   className="rounded-lg"
                 />
                 <Link href={item.downloadLink} className="text-sm py-2">
-                  <span className="font-bold">{item.icao}</span> - {item.title}
+                  {item.category === "airports" ? (
+                    <>
+                      <span className="font-bold">{item.icao}</span>{" "}
+                      {item.title}
+                    </>
+                  ) : (
+                    item.title
+                  )}
                 </Link>
                 <div className="flex justify-between">
                   <h2>{item.developer}</h2>

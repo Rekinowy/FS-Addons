@@ -1,3 +1,5 @@
+import { filters } from "@/constants";
+
 const schema = {
   name: 'addon',
   Title: 'Addons',
@@ -49,20 +51,20 @@ const schema = {
       type: 'string',
       validation: (Rule: any) => Rule.required(),
       options: {
-        list: ['aircrafts', 'airports', 'misc', 'utilities'],
+        list: filters,
       },
     },
     {
       name: 'country',
       title: 'Country',
       type: 'string',
-      hidden: ({parent}: any) => parent?.category !== 'airports' && parent?.category !== 'misc'
+      hidden: ({parent}: any) => parent?.category !== 'airports' && parent?.category !== 'sceneries'
     },
     {
       name: 'coordinates',
       title: 'Coordinates',
       type: 'geopoint',
-      hidden: ({parent}: any) => parent?.category !== 'airports'
+      hidden: ({parent}: any) => parent?.category !== 'airports' && parent?.category !== 'sceneries'
     },
     {
       name: 'downloadLink',

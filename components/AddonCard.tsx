@@ -11,6 +11,7 @@ import { MdShoppingCartCheckout } from "react-icons/md";
 
 type Addon = {
   title: string;
+  slug: { current: string; _type: string };
   icao?: string;
   image: string;
   developer: string;
@@ -22,6 +23,7 @@ type Addon = {
 
 const AddonCard = ({
   title,
+  slug,
   icao,
   image,
   developer,
@@ -34,20 +36,21 @@ const AddonCard = ({
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const qCountry = searchParams.get("country");
+  const qCountry = searchParams?.get("country");
 
-  const handleCountryFilter = (country: string) => {
+  const handleCountryFilter = (event: React.MouseEvent, country: string) => {
+    event.preventDefault();
     let newUrl = "";
 
     if (qCountry === country) {
       newUrl = formUrlQuery({
-        params: searchParams.toString(),
+        params: searchParams ? searchParams.toString() : "",
         keysToRemove: ["country", "page"],
         value: null,
       });
     } else {
       newUrl = formUrlQuery({
-        params: searchParams.toString(),
+        params: searchParams ? searchParams.toString() : "",
         key: "country",
         value: country.toUpperCase(),
         keysToRemove: ["page"],
@@ -59,13 +62,16 @@ const AddonCard = ({
 
   return (
     <div className="flex flex-col justify-between w-full rounded-lg ring-2 ring-black-300 cursor-pointer hover:ring-black-400 transition-all">
-      <div className="relative text-white text-sm font-semibold">
+      <Link
+        href={"/addons/" + slug.current}
+        className="relative text-white text-sm font-semibold"
+      >
         <div className="absolute rounded-md px-2 py-1 top-2 right-2 gradient_blue">
           <h4 className="font-semibold">v{version}</h4>
         </div>
         {country && (
           <button
-            onClick={() => handleCountryFilter(country)}
+            onClick={(event) => handleCountryFilter(event, country)}
             className="absolute flex gap-1 rounded-md px-1.5 py-1 top-2 left-2 gradient_blue hover:ring-1"
           >
             <Image
@@ -92,8 +98,7 @@ const AddonCard = ({
             <h3 className="text-base font-light text-slate-200">{developer}</h3>
           </div>
         </div>
-      </div>
-
+      </Link>
       <div className="flex-between py-2 px-3 text-sm lg:text-base">
         <p className=" text-slate-400 font-light">{formattedDate}</p>
         <Link href={downloadLink} className="flex-center p-2 group">

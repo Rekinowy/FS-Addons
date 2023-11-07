@@ -41,6 +41,7 @@ const Page = async ({ searchParams }: Props) => {
             addons?.resources.map((addon: any) => (
               <AddonCard
                 key={addon._id}
+                slug={addon.slug}
                 title={addon.title}
                 icao={addon.icao}
                 image={addon.image}

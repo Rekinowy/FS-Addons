@@ -43,7 +43,10 @@ const Map = ({ data }: any) => {
                   height={200}
                   className="rounded-lg"
                 />
-                <Link href={item.downloadLink} className="text-sm py-2">
+                <Link
+                  href={"/addons/" + item.slug.current}
+                  className="text-sm py-2"
+                >
                   {item.category === "airports" ? (
                     <>
                       <span className="font-bold">{item.icao}</span>{" "}

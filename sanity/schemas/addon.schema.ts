@@ -79,6 +79,12 @@ const schema = {
       validation: (Rule: any) => Rule.required(),
       options: { hotspot: true },
     },
+    {
+      title: 'Description', 
+      name: 'description',
+      type: 'array', 
+      of: [{type: 'block'}]
+    }
   ]
 }
 

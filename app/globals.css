@@ -263,7 +263,34 @@
   background-color: rgba(255, 255, 255, 0.856) !important;
   }
 
-  .leaflet-container {
-    background: rgb(22 27 34) !important;
-    outline: 0;
+.leaflet-container {
+  background: rgb(22, 27, 34) !important;
+  outline: 0;
+}
+
+.leaflet-control {
+  background: rgba(97, 98, 100, 0.8) !important;
+  color: rgb(170, 170, 170) !important;
+}
+.leaflet-control a {
+  color: rgb(184, 181, 181) !important;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background: rgba(97, 98, 100, 0.8) !important;
+}
+.leaflet-control-zoom-in span,
+.leaflet-control-zoom-out span {
+  color: rgb(212, 206, 206) !important;
+}
+
+.leaflet-bar a {
+  border-bottom: 1px solid rgb(81, 81, 82) !important;
+}
+
+
+
+.overlay {
+  backdrop-filter: blur(3px);
 }

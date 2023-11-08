@@ -25,7 +25,7 @@ const Map = ({ data }: any) => {
       <MapContainer className="w-full z-0 flex-grow" center={[40, 0]} zoom={3}>
         <TileLayer
           className="map-tiles"
-          attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> | <a href="https://www.openstreetmap.org/copyright"> &copy; OpenStreetMap</a>'
+          attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> | <a href="https://www.openstreetmap.org/copyright"> &copy; OpenStreetMap</a> contributors'
           url="https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=86jHJztgtAyNO6UxDfquBGyQWVqjdO1VLtgNkrrgMFqnUgYRGawVj2q2X9q4PqOw"
         />
         {data.map((item: any) => (

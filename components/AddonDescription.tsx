@@ -4,17 +4,27 @@ import { PortableText } from "@portabletext/react";
 import { useState } from "react";
 import { MdPlayArrow } from "react-icons/md";
 
-const AddonDescription = ({ description }: any) => {
-  const [descIsOpen, setDescIsOpen] = useState(false);
+const AddonDescription = ({
+  data,
+  label,
+  def,
+}: {
+  data: any;
+  label: string;
+  def: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(def);
 
   const components = {
     block: {
       normal: ({ children }: any) => <p className="pb-4">{children}</p>,
-      h1: ({ children }: any) => <h1 className="pb-4 pt-4">{children}</h1>,
+      h4: ({ children }: any) => (
+        <h4 className="font-semibold pb-2 pt-4">{children}</h4>
+      ),
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="ml-6 pb-2" style={{ listStyleType: "disc" }}>
+        <li className="ml-6 pb-1" style={{ listStyleType: "disc" }}>
           {children}
         </li>
       ),
@@ -22,23 +32,21 @@ const AddonDescription = ({ description }: any) => {
   };
 
   return (
-    <section className="w-full">
+    <section className="flex flex-col w-full gap-4 pb-8">
       <button
-        onClick={() => setDescIsOpen((prev) => !prev)}
-        className="flex w-full justify-between items-center p-2 mb-4 rounded-lg border border-slate-600 text-slate-200"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="flex w-full justify-between items-center px-3 py-3 rounded-lg border border-slate-600 text-slate-200 text-lg font-base"
       >
-        <h1 className="text-lg font-base">Details</h1>
+        {label}
         <MdPlayArrow
           className={`w-[24px] h-[24px] ${
-            descIsOpen ? "-rotate-90" : "rotate-90"
+            isOpen ? "-rotate-90" : "rotate-90"
           } transition-all duration-300 `}
         />
       </button>
-      {descIsOpen && (
-        <div>
-          <div className="px-2 sm:px-4 text-slate-400">
-            <PortableText value={description} components={components} />
-          </div>
+      {isOpen && (
+        <div className="px-3 sm:px-4 md:px-1 text-slate-400">
+          <PortableText value={data} components={components} />
         </div>
       )}
     </section>

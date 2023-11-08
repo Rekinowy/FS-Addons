@@ -13,8 +13,12 @@ const Navbar = () => {
   return (
     <>
       <nav className="flex-center flex-col fixed z-20 w-full bg-black-100 border-b-2 border-black-300 text-gray-100">
-        <div className="relative flex-between w-full max-w-screen-2xl p-4 sm:p-8 bg-black-100">
-          <Link href="/" className=" w-[120px] sm:w-[150px]">
+        <div className="relative flex-between w-full max-w-screen-2xl p-4 sm:p-6 bg-black-100">
+          <Link
+            href="/"
+            onClick={() => setIsMenuOpen(false)}
+            className="w-[120px] sm:w-[150px]"
+          >
             <Image src="/logo.png" alt="Logo" width={150} height={43} />
           </Link>
 
@@ -29,7 +33,7 @@ const Navbar = () => {
             )}
           </button>
 
-          <ul className="flex items-center gap-x-8 text-lg max-sm:hidden">
+          <ul className="flex items-center gap-x-8 text-base max-sm:hidden">
             {links.map((link) => (
               <li key={link.label}>
                 <Link href={link.url}>{link.label}</Link>
@@ -81,7 +85,9 @@ const Navbar = () => {
       <div
         onClick={() => setIsMenuOpen(false)}
         className={`fixed sm:hidden bg-black ${
-          isMenuOpen ? "bg-opacity-70 w-screen h-screen" : "bg-opacity-0"
+          isMenuOpen
+            ? "bg-opacity-80 w-screen h-screen overlay"
+            : "bg-opacity-0"
         } z-10 pointer-events-auto transition-all duration-300`}
       />
     </>

@@ -6,6 +6,15 @@ const schema = {
   type:'document',
   fields: [
     {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      validation: (Rule: any) => Rule.required(),
+      options: {
+        list: filters,
+      },
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -46,15 +55,6 @@ const schema = {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-      validation: (Rule: any) => Rule.required(),
-      options: {
-        list: filters,
-      },
-    },
-    {
       name: 'country',
       title: 'Country',
       type: 'string',
@@ -82,6 +82,12 @@ const schema = {
     {
       title: 'Description', 
       name: 'description',
+      type: 'array', 
+      of: [{type: 'block'}]
+    },
+    {
+      title: 'Changelog', 
+      name: 'changelog',
       type: 'array', 
       of: [{type: 'block'}]
     }

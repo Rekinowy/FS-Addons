@@ -1,20 +1,6 @@
-"use client";
-
 import { PortableText } from "@portabletext/react";
-import { useState } from "react";
-import { MdPlayArrow } from "react-icons/md";
 
-const AddonDescription = ({
-  data,
-  label,
-  def,
-}: {
-  data: any;
-  label: string;
-  def: boolean;
-}) => {
-  const [isOpen, setIsOpen] = useState(def);
-
+const AddonDescription = ({ data }: { data: any }) => {
   const components = {
     block: {
       normal: ({ children }: any) => <p className="pb-4">{children}</p>,
@@ -32,23 +18,14 @@ const AddonDescription = ({
   };
 
   return (
-    <section className="flex flex-col w-full gap-4 pb-8">
-      <button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="flex w-full justify-between items-center px-3 py-3 rounded-lg border border-slate-600 text-slate-200 text-lg font-base"
-      >
-        {label}
-        <MdPlayArrow
-          className={`w-[24px] h-[24px] ${
-            isOpen ? "-rotate-90" : "rotate-90"
-          } transition-all duration-300 `}
-        />
-      </button>
-      {isOpen && (
-        <div className="px-3 sm:px-4 md:px-1 text-slate-400">
-          <PortableText value={data} components={components} />
-        </div>
-      )}
+    <section className="flex flex-col w-full gap-4">
+      <div className="flex w-full justify-between items-center px-3 py-3 rounded-lg border border-slate-600 text-slate-200 text-lg font-base">
+        Details
+      </div>
+
+      <div className="px-3 sm:px-4 md:px-1 text-slate-400">
+        <PortableText value={data} components={components} />
+      </div>
     </section>
   );
 };

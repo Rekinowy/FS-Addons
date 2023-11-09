@@ -1,7 +1,9 @@
 const Page = () => {
   return (
-    <div className="flex mx-auto w-full max-w-screen-2xl flex-col pt-20 sm:pt-32 px-4 sm:px-8">
-      <h1 className="text-white text-lg">Updates</h1>
+    <div className="flex-center mx-auto w-full h-full max-w-screen-2xl flex-col pt-20 sm:pt-32 px-4 sm:px-8">
+      <h1 className="text-slate-400 font-bold text-4xl">
+        Updates - Work in Progress
+      </h1>
     </div>
   );
 };

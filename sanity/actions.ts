@@ -44,7 +44,7 @@ export const getMapData = async () => {
 export const getAddonDetails = async (slug: string) => {
   try {
     const addonDetails = await readClient.fetch(
-      groq`*[_type == 'addon' && slug.current == '${slug}']{ title, _id, icao, date, developer, category, coordinates, version, description, changelog, downloadLink, "image": image.asset->url}`)
+      groq`*[_type == 'addon' && slug.current == '${slug}']{ title, _id, icao, date, country, developer, category, coordinates, version, description, changelog, downloadLink, "image": image.asset->url}`)
     return addonDetails[0];
 
   } catch (err) {

@@ -23,7 +23,7 @@ const AddonMap = ({ title, icao, category, lat, lng }: AddonMapProps) => {
   });
 
   return (
-    <div id="map" className="flex w-full min-h-[320px] md:min-h-[400px] h-full">
+    <div id="map" className="flex w-full min-h-[280px] md:min-h-[380px] h-full">
       <MapContainer
         className="flex-grow w-full z-0 rounded-lg border-black-300"
         center={[lat, lng]}

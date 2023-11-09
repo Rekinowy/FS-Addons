@@ -20,7 +20,7 @@ const Map = ({ data }: any) => {
   return (
     <div
       id="map"
-      className="flex w-full h-full mt-[68px] sm:mt-[108px] pb-12 sm:pb-20"
+      className="flex w-full h-full mt-[68px] sm:mt-[92px] pb-[44px] sm:pb-[60px]"
     >
       <MapContainer className="w-full z-0 flex-grow" center={[40, 0]} zoom={3}>
         <TileLayer

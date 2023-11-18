@@ -41,7 +41,7 @@ const Filters = () => {
           onClick={() => handleFilter(filter)}
           className={`${filter == category && "gradient_blue"} ${
             filter !== category && "hover:bg-slate-800"
-          } flex items-center gap-2 whitespace-nowrap rounded-lg px-1 xs:px-3 sm:px-5 md:px-4  py-2 xs:py-2.5 capitalize text-sm sm:text-base transition-all`}
+          } flex items-center gap-2 whitespace-nowrap rounded-lg px-1 xs:px-2 sm:px-5 md:px-4  py-2 xs:py-2.5 capitalize transition-all`}
         >
           <div className="hidden md:block">
             <Image

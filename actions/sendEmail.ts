@@ -12,7 +12,6 @@ export const sendEmail = async (formData: FormData) => {
   const message = formData.get('message')
 
 
-
   await resend.emails.send({
     from: 'FS Addons Contact Form <onboarding@resend.dev>',
     to: 'baru94@gmail.com',

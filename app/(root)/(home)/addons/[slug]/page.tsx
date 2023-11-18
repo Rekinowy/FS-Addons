@@ -40,19 +40,27 @@ const AddonDetails = async ({ params }: { params: { slug: string } }) => {
             <h2 className="text-xl lg:text-2xl font-light text-slate-200">
               {addon.developer}
             </h2>
-            <div className="flex gap-4 text-base my-2 font-light text-slate-200">
-              <div className="flex w-fit gap-1.5 rounded-md text-sm px-2 py-1.5 text-slate-200 ring-1">
-                <h4 className="font-medium capitalize">{addon.category}</h4>
+            <div className="flex gap-4 text-sm my-2 text-gray-300">
+              <div className="flex items-center w-fit gap-1.5 rounded-md px-2 py-1.5 ring-1">
+                <div>
+                  <Image
+                    src={`/${addon.category}.png`}
+                    alt={`${addon.category}`}
+                    width={16}
+                    height={16}
+                  />
+                </div>
+                <h4 className="capitalize">{addon.category}</h4>
               </div>
               {addon.country && (
-                <div className="flex w-fit gap-1.5 rounded-md text-sm px-2 py-1.5 text-slate-200 ring-1">
+                <div className="flex w-fit gap-1.5 rounded-md px-2 py-1.5 ring-1">
                   <Image
                     src={`/flags/${addon.country.toLowerCase()}.png`}
                     alt={`${addon.country}`}
                     width={20}
                     height={20}
                   />
-                  <h4 className="font-medium">{countryName[addon.country]}</h4>
+                  <h4>{countryName[addon.country]}</h4>
                 </div>
               )}
             </div>

@@ -19,7 +19,13 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
             className="w-[120px] sm:w-[150px]"
           >
-            <Image src="/logo.png" alt="Logo" width={150} height={43} />
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={150}
+              height={43}
+              priority={true}
+            />
           </Link>
 
           <button

@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 import { filters } from "@/constants";
+import Image from "next/image";
 
 const Filters = () => {
   const router = useRouter();
@@ -40,8 +41,16 @@ const Filters = () => {
           onClick={() => handleFilter(filter)}
           className={`${filter == category && "gradient_blue"} ${
             filter !== category && "hover:bg-slate-800"
-          } whitespace-nowrap rounded-lg px-1 xs:px-3 sm:px-5 py-2 xs:py-2.5 capitalize text-sm sm:text-base transition-all`}
+          } flex items-center gap-2 whitespace-nowrap rounded-lg px-1 xs:px-3 sm:px-5 md:px-4  py-2 xs:py-2.5 capitalize text-sm sm:text-base transition-all`}
         >
+          <div className="hidden md:block">
+            <Image
+              src={`/${filter}.png`}
+              alt={`${filter}`}
+              width={18}
+              height={18}
+            />
+          </div>
           {filter}
         </button>
       ))}

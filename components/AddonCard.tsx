@@ -1,10 +1,18 @@
+"use client";
+
+import { formUrlQuery } from "@/sanity/utils";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 
 import Image from "next/image";
 import Link from "next/link";
+import { MdShoppingCartCheckout } from "react-icons/md";
+import CountryButton from "./CountryButton";
 
 type Addon = {
   title: string;
+  slug: { current: string; _type: string };
   icao?: string;
   image: string;
   developer: string;
@@ -16,6 +24,7 @@ type Addon = {
 
 const AddonCard = ({
   title,
+  slug,
   icao,
   image,
   developer,
@@ -26,22 +35,46 @@ const AddonCard = ({
 }: Addon) => {
   const formattedDate = format(new Date(date), "MMMM d, yyyy");
 
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const qCountry = searchParams?.get("country");
+
+  const handleCountryFilter = (event: React.MouseEvent, country: string) => {
+    event.preventDefault();
+    let newUrl = "";
+
+    if (qCountry === country) {
+      newUrl = formUrlQuery({
+        params: searchParams ? searchParams.toString() : "",
+        keysToRemove: ["country", "page"],
+        value: null,
+      });
+    } else {
+      newUrl = formUrlQuery({
+        params: searchParams ? searchParams.toString() : "",
+        key: "country",
+        value: country.toUpperCase(),
+        keysToRemove: ["page"],
+      });
+    }
+
+    router.push(newUrl, { scroll: false });
+  };
+
   return (
     <div className="flex flex-col justify-between w-full rounded-lg ring-2 ring-black-300 cursor-pointer hover:ring-black-400 transition-all">
-      <div className="relative text-white text-sm font-semibold">
+      <Link
+        href={"/addons/" + slug.current}
+        className="relative text-white text-sm font-semibold"
+      >
         <div className="absolute rounded-md px-2 py-1 top-2 right-2 gradient_blue">
           <h4 className="font-semibold">v{version}</h4>
         </div>
         {country && (
-          <div className="absolute flex gap-1 rounded-md px-1.5 py-1 top-2 left-2 gradient_blue">
-            <Image
-              src={`/flags/${country.toLowerCase()}.png`}
-              alt={`${country}`}
-              width={20}
-              height={20}
-            />
-            <h4 className="uppercase">{country}</h4>
-          </div>
+          <CountryButton
+            handleCountryFilter={handleCountryFilter}
+            country={country}
+          />
         )}
         <Image
           src={image}
@@ -58,20 +91,14 @@ const AddonCard = ({
             <h3 className="text-base font-light text-slate-200">{developer}</h3>
           </div>
         </div>
-      </div>
-
+      </Link>
       <div className="flex-between py-2 px-3 text-sm lg:text-base">
         <p className=" text-slate-400 font-light">{formattedDate}</p>
-        <Link href={downloadLink} className="flex p-2">
-          <p className="mr-2 hover:font-semibold transition-all text-gradient_blue">
+        <Link href={downloadLink} className="flex-center p-2 group">
+          <p className="mr-2 group-hover:font-semibold transition-all duration-75 text-gradient_blue">
             Buy now
           </p>
-          <Image
-            src="/arrow-blue.svg"
-            alt="Download"
-            width={14.5}
-            height={11}
-          />
+          <MdShoppingCartCheckout className="w-[18px] h-[18px] text-[#4c73ff] group-hover:text-[#389bff] transition-all duration-75" />
         </Link>
       </div>
     </div>

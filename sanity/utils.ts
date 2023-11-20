@@ -4,12 +4,13 @@ interface BuildQueryParams {
   type: string;
   query: string;
   category: string;
+  country: string;
   page: number;
   perPage: number;
 }
 
 export function buildQuery(params: BuildQueryParams) {
-  const { type, query, category, page, perPage } = params;
+  const { type, query, category, country, page, perPage } = params;
 
   const conditions = [`*[_type == "${type}"`];
   let order = "date desc"
@@ -19,10 +20,14 @@ export function buildQuery(params: BuildQueryParams) {
     order = "lower(title) asc";
   }
 
-  if (category && category !== 'all') {
+  if (category) {
     conditions.push(`category == "${category}"`);
   }
 
+  if (country) {
+    conditions.push(`country == "${country}"`);
+  }
+  
   // calculate pagination limits
   const offset = (page - 1) * perPage;
   const limit = offset + perPage;
@@ -35,8 +40,7 @@ export function buildQuery(params: BuildQueryParams) {
 
     // add sorting to the query
     const sortedQuery = `${queryConditions} | order(${order}) [${offset}...${limit}]`;
-  
-    return {queryConditions: queryConditions, sortedQuery: sortedQuery};
+    return {queryConditions, sortedQuery};
 }
 
 

@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import { Input } from "./ui/input";
 import { formUrlQuery } from "@/sanity/utils";
+import { MdSearch } from "react-icons/md";
 
 const SearchForm = () => {
   const searchParams = useSearchParams();
@@ -37,17 +38,11 @@ const SearchForm = () => {
   }, [search]);
 
   return (
-    <form className="flex-center w-full mx-auto sm:mt-0">
-      <label className="flex-center relative w-full max-w-2xl ">
-        <Image
-          src="/search-icon.svg"
-          className="absolute left-4 sm:left-6 w-6 sm:w-7"
-          width={28}
-          height={28}
-          alt="Search icon"
-        />
+    <form id="search" className="flex-center w-full mx-auto sm:mt-0">
+      <label id="search" className="flex-center relative w-full max-w-2xl ">
+        <MdSearch className="absolute left-4 sm:left-6 w-6 h-6 sm:w-8 sm:h-8 text-grey-100" />
         <Input
-          className="base-regular h-12 sm:h-16 border-0 rounded-lg bg-black-400 pl-14 sm:pl-20 pr-8 text-white-800 !ring-0 !ring-offset-0 placeholder:text-white-600 placeholder:text-xl max-sm:placeholder:text-base max-sm:text-lg"
+          className="base-regular border-0 rounded-lg bg-black-400 pl-14 sm:pl-20 pr-8 py-7 sm:py-8 text-white-800 !ring-0 !ring-offset-0 placeholder:text-grey-100 text-lg"
           type="text"
           placeholder="Search"
           value={search}

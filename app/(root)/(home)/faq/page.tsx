@@ -35,7 +35,7 @@ const Page = () => {
 
             <div
               className={`overflow-hidden transition-max-height duration-300 ${
-                openAnswers[index] ? "max-h-full"" : "max-h-0"
+                openAnswers[index] ? "max-h-full" : "max-h-0"
               }  text-slate-400 sm:text-lg
               `}
             >

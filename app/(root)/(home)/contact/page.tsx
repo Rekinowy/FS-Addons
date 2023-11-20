@@ -48,7 +48,7 @@ const Page = () => {
           disabled={isMessageSent}
         />
         <Textarea
-          className="text-lg h-52 sm:h-64 border-0 rounded-lg bg-black-400 p-4 sm:p-8 text-white-800 !ring-0 !ring-offset-0 placeholder:text-grey-100 placeholder:text-xl max-sm:placeholder:text-base"
+          className="text-lg h-52 sm:h-64 border-0 rounded-lg bg-black-400 px-4 sm:px-8 py-5 text-white-800 !ring-0 !ring-offset-0 placeholder:text-grey-100 placeholder:text-xl max-sm:placeholder:text-base"
           name="message"
           value={message}
           onChange={(event) => setMessage(event.target.value)}

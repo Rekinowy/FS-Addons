@@ -5,25 +5,20 @@ import { useState } from "react";
 import { MdPlayArrow } from "react-icons/md";
 
 const Page = () => {
-  const [openAnswers, setOpenAnswers] = useState<number[]>([]);
+  const [openAnswers, setOpenAnswers] = useState<Record<number, boolean>>({});
 
   const toggleAnswer = (index: number) => {
-    setOpenAnswers((prevOpenAnswers) => {
-      const isOpen = prevOpenAnswers.includes(index);
-      if (isOpen) {
-        return prevOpenAnswers.filter((i) => i !== index);
-      } else {
-        return [...prevOpenAnswers, index];
-      }
-    });
+    setOpenAnswers((prevOpenAnswers) => ({
+      ...prevOpenAnswers,
+      [index]: !prevOpenAnswers[index],
+    }));
   };
-
   return (
     <main className="flex mx-auto w-full gap-10 max-w-screen-xl flex-col pt-24 sm:pt-32 px-4 sm:px-8">
       <h1 className="text-slate-200 font-semibold text-2xl sm:text-3xl">
         Frequently Asked Questions (FAQ)
       </h1>
-      <section className="flex flex-col gap-4">
+      <section className="flex flex-col ">
         {faq.map((item, index) => (
           <div className="flex flex-col w-full gap-4" key={index}>
             <button
@@ -33,15 +28,19 @@ const Page = () => {
               <p className="px-2 text-left">{item.question}</p>
               <MdPlayArrow
                 className={`w-[24px] h-[24px] ${
-                  openAnswers.includes(index) ? "-rotate-90" : "rotate-90"
+                  openAnswers[index] ? "-rotate-90" : "rotate-90"
                 } transition-all duration-300 `}
               />
             </button>
-            {openAnswers.includes(index) && (
-              <div className="sm:px-4 md:px-1 pb-6 text-slate-400 sm:text-lg">
-                <p className="w-full px-4">{item.answer}</p>
-              </div>
-            )}
+
+            <div
+              className={`overflow-hidden transition-max-height duration-300 ${
+                openAnswers[index] ? "max-h-96" : "max-h-0"
+              }  text-slate-400 sm:text-lg
+              `}
+            >
+              <p className="w-full px-4 pb-8">{item.answer}</p>
+            </div>
           </div>
         ))}
       </section>

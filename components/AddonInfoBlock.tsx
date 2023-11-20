@@ -47,7 +47,7 @@ const AddonInfoBlock = ({
 
       <div
         className={`px-3 sm:px-4 md:px-1 text-slate-400 overflow-hidden transition-max-height duration-300 ${
-          isOpen ? "max-h-96" : "max-h-0"
+          isOpen ? "max-h-full" : "max-h-0"
         }  text-slate-400 sm:text-lg
         `}
       >

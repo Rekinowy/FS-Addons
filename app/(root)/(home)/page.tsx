@@ -5,7 +5,7 @@ import PaginationControls from "@/components/PaginationControls";
 import SearchForm from "@/components/SearchForm";
 import { getResources } from "@/sanity/actions";
 
-export const revalidate = 900;
+export const revalidate = 10;
 
 interface Props {
   searchParams: { [key: string]: string | undefined };

@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { sendEmail } from "@/actions/sendEmail";
 
 const Page = () => {
+  const [isSending, setIsSending] = useState(false);
   const [isMessageSent, setIsMessageSent] = useState(false);
   const [senderEmail, setSenderEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -30,10 +31,13 @@ const Page = () => {
         className="flex flex-col gap-6 w-full max-w-[720px] mx-auto"
         onSubmit={async (event) => {
           event.preventDefault();
+          setIsSending(true);
           await sendEmail(formData);
+          setIsSending(false);
           setIsMessageSent(true);
           setSenderEmail("");
           setMessage("");
+          setTimeout(() => setIsMessageSent(false), 5000);
         }}
       >
         <Input
@@ -45,7 +49,7 @@ const Page = () => {
           required
           maxLength={100}
           placeholder="Your email"
-          disabled={isMessageSent}
+          disabled={isSending}
         />
         <Textarea
           className="text-lg h-52 sm:h-64 border-0 rounded-lg bg-black-400 px-4 sm:px-8 py-5 text-white-800 !ring-0 !ring-offset-0 placeholder:text-grey-100 placeholder:text-xl max-sm:placeholder:text-base"
@@ -54,14 +58,15 @@ const Page = () => {
           onChange={(event) => setMessage(event.target.value)}
           placeholder="Your message"
           required
-          disabled={isMessageSent}
+          disabled={isSending}
         />
         <button
           className="flex-center self-center rounded-lg w-24 px-1 xs:px-3 sm:px-5 md:px-4 py-2 xs:py-2.5 capitalize text-sm sm:text-base text-gray-300 bg-slate-800 hover:bg-slate-600 disabled:hover:bg-slate-800 disabled:text-gray-500  transition-all"
-          disabled={isMessageSent}
+          disabled={isSending}
         >
           Submit
         </button>
+        {isSending && <p className="text-center text-white-400">Sending...</p>}
         {isMessageSent && (
           <p className="text-center text-green-500">
             The message has been sent!

@@ -16,6 +16,8 @@ const AddonDetails = async ({ params }: { params: { slug: string } }) => {
   const addon = await getAddonDetails(params.slug);
   const formattedDate = format(new Date(addon.date), "MMMM d, yyyy");
 
+  console.log(addon);
+
   return (
     <main className="flex-center mx-auto w-full max-w-screen-2xl flex-col pt-[86px] sm:pt-36 px-4 sm:px-6">
       {/* Cover image*/}

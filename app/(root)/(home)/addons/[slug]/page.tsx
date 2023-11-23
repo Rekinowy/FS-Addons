@@ -8,7 +8,7 @@ import AddonInfoBlock from "@/components/AddonInfoBlock";
 import AddonDescription from "@/components/AddonDescription";
 import { countryName } from "@/constants/countries";
 
-export const revalidate = 30;
+export const revalidate = 900;
 
 const DynamicAddonMap = dynamic(() => import("@/components/AddonMap"), {
   ssr: false,
